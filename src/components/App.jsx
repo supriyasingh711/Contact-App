@@ -12,10 +12,21 @@ function App() {
     setContacts([...contacts,contact])
   }
   useEffect(()=>{
-localstorage.setItem(LOCAL_STORAGE_KEY,JSON.stringify(contacts));
+
+    const getContacts=JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)
+  )
+  if(getContacts) setContacts(getContacts);
+
+
+},[contacts]);
+
+  useEffect(()=>{
+    if(contacts.length>0){
+      window.localstorage.setItem(LOCAL_STORAGE_KEY,JSON.stringify(contacts));
+     }
   },[contacts])
 
-  return (
+  return ( 
     <>
     <div className='ui container'>
     <Header/>
