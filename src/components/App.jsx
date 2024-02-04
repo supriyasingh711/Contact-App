@@ -54,19 +54,21 @@ const filterContacts=(e)=>{
 
   return (
     <>
-    <div className='mx-auto max-w-[360px] p-4'>
+    <div className='w-full flex flex-col justify-center items-center'>
     <Navbar/>
-    <div className='flex relative items-center '>
+
+    <div className='flex w-full sm:w-2/3 '>
 
       <input onChange={filterContacts}
       type="text" 
-      className=' h-10 flex-grow border border-white bg-transparent rounded text-white pl-12 ' />
-      <i  className='fas fa-search m-1 absolute text-3xl px-2 text-white'></i>
+      className='h-10  border border-white bg-transparent rounded relative text-white m-3 p-1 w-full pl-12 ' />
+      <i  className='fas fa-search m-2 p-2 absolute text-3xl px-2 text-white'></i>
     </div>
-    <div>
-      <i onClick={onOpen} className='fas fa-add text-3xl text-white border border-white rounded-full p-2 cursor-pointer '>Add Contact</i>
-    </div>
-
+    <div onClick={onOpen} className='cursor-pointer'>
+      <p href="" className='text-3xl text-white'>
+      <i  className='fas fa-add text-2xl text-white  m-5 p-2 cursor-pointer '></i>
+        
+        Create New Contact</p>
     </div>
     <div>{
 contacts.length<=0?<NotFoundContact/>:contacts.map((contact)=>(
@@ -76,6 +78,8 @@ contacts.length<=0?<NotFoundContact/>:contacts.map((contact)=>(
 )
 
 }</div>
+    </div>
+    
 
 <AddAndUpdateContact isOpen={isOpen} onClose={onClose}  />
 <ToastContainer/>
