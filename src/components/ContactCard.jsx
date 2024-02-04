@@ -4,6 +4,7 @@ import { deleteDoc,doc } from 'firebase/firestore'
 import {db} from '../config/firebase'
 import AddAndUpdateContact from './AddAndUpdateContact'
 import useDisclosure from '../hooks/useDisclosure'
+import { toast } from 'react-toastify'
 const ContactCard = ({contact}) => {
 const {isOpen,onClose,onOpen}=useDisclosure()
     
@@ -13,6 +14,7 @@ const {isOpen,onClose,onOpen}=useDisclosure()
 
 console.log(id);
             await deleteDoc(doc(db,"contacts",id))
+            toast.success("Contact Deleted Successfully")
 
         }catch(error){
             console.log(error)
