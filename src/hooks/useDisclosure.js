@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
 
-
 const useDisclosure = () => {
     const [isOpen,setOpen]=useState(false);
 const onOpen=()=>{

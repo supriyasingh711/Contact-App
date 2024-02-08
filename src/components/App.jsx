@@ -13,27 +13,36 @@ import NotFoundContact from './NotFoundContact';
 
 function App() {
 const [contacts,setContacts]=useState([]);
-const {isOpen,onClose,onOpen}=useDisclosure()
+const {isOpen,onClose,onOpen}=useDisclosure()//this is a custom hook
 //we are going to perform network call so we use useEffect
 useEffect(()=>{
 const getContacts=async()=>{
 try{
 const contactsRef=collection(db,"contacts");
 const contactsSnapShot=await getDocs(contactsRef);
-const contactList=contactsSnapShot.docs.map((doc)=>{
-  return{
-    id:doc.id,
-    ...doc.data()
-  }
+//this onspanshot updates as soon as we create
+onSnapshot(contactsRef,(snapshot)=>{
+  const contactList=snapshot.docs.map((doc)=>{
+    return {
+      id:doc.id,
+      ...doc.data()
+    }
   })
+// const contactList=contactsSnapShot.docs.map((doc)=>{
+//   return{
+//     id:doc.id,
+//     ...doc.data()//spread operator to include a list
+//   }
+//   })
 setContacts(contactList)
+return contactList
 
-}catch(error){
-
+})}catch(error){
+  console.log(error);
 }
 }
 getContacts();
-},[])
+},[]);//if i am not sending this empty array it is not working in filter
 const filterContacts=(e)=>{
   const value=e.target.value;
   const contactsRef=collection(db,"contacts")
@@ -50,15 +59,11 @@ const filterContacts=(e)=>{
       return filteredContacts;
   })
 }
-
-
   return (
     <>
     <div className='w-full flex flex-col justify-center items-center'>
     <Navbar/>
-
     <div className='flex w-full sm:w-2/3 '>
-
       <input onChange={filterContacts}
       type="text" 
       className='h-10  border border-white bg-transparent rounded relative text-white m-3 p-1 w-full pl-12 ' />
@@ -74,13 +79,9 @@ const filterContacts=(e)=>{
 contacts.length<=0?<NotFoundContact/>:contacts.map((contact)=>(
     <ContactCard key={contact.id} contact={contact} />
 )
-
 )
-
 }</div>
     </div>
-    
-
 <AddAndUpdateContact isOpen={isOpen} onClose={onClose}  />
 <ToastContainer/>
         </>

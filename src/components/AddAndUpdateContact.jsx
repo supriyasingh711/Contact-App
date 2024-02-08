@@ -14,18 +14,14 @@ const contactSchemaValidation=Yup.object().shape({
 
 const AddAndUpdateContact = ({isOpen,onClose,isUpdate,contact}) => {
     //function to send our data
-
     const addContact=async (contact)=>{
         try{
 const contactsRef=collection(db,"contacts");
 await addDoc(contactsRef,contact)
 toast.success("Contact Added Successfully")
 onClose();
-
-
         }catch(error){
             console.log(error)
-
         }
     }
     const updateContact=async (contact,id)=>{
@@ -34,9 +30,7 @@ onClose();
 const contactsRef=doc(db,"contacts",id);
 await updateDoc(contactsRef,contact)
 toast.success("Contact Updated Successfully")
-
 onClose();
-
         }catch(error){
             console.log(error)
 
@@ -45,11 +39,8 @@ onClose();
   return (
     <div>
         <Modal isOpen={isOpen}
-onClose={onClose}
-
->
-
-    <Formik
+onClose={onClose}>
+     <Formik
     validationSchema={contactSchemaValidation}
     initialValues={isUpdate?{
         name:contact.name,
@@ -87,10 +78,12 @@ onClose={onClose}
             <Field name="number" className="border border-black py-2" />
 
             </div>
-            <button className='bg-orange p-4 text-white  ' type='submit'> {isUpdate? " Update ": "Add"} Contact</button>
+            <div className='flex flex-col w-2/3'>
+            <label htmlFor='image'>Image Upload</label>
+            <Field name="image" className="border border-black py-2" />
 
-         
-
+            </div>
+            <button className='bg-orange p-4 text-white' type='submit'> {isUpdate? " Update ": "Add"} Contact</button>
         </Form>
     </Formik>
 </Modal>

@@ -7,14 +7,16 @@ const Modal = ({onClose,isOpen,children}) => {
     
     {isOpen && 
     (<>
-    <div className='w-1/3 h-[400px] m-auto bg-white relative z-50'>
+    <div className='absolute top-0 z-40 grid  h-screen w-screen place-items-center backdrop-blur'>
+    <div className=' w-1/3 h-[400px] m-auto bg-white relative z-50'>
         <div className='justify-end flex p-4'>
             < i className='fas fa-close text-3xl' onClick={onClose}> </i>
         </div>
         {children}
 </div>
-    <div onClick={onClose}
-    className='backdrop-blur h-screen w-screen absolute top-0 z-40'/>
+    </div>
+  
+
     </>)}
     </>
   ,document.getElementById("modal-root"))

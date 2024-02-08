@@ -6,16 +6,12 @@ import AddAndUpdateContact from './AddAndUpdateContact'
 import useDisclosure from '../hooks/useDisclosure'
 import { toast } from 'react-toastify'
 const ContactCard = ({ contact }) => {
-  const { isOpen, onClose, onOpen } = useDisclosure()
-
-  const deleteContact = async (id) => {
-
+const { isOpen, onClose, onOpen } = useDisclosure()
+const deleteContact = async (id) => {
     try {
-
       console.log(id);
       await deleteDoc(doc(db, "contacts", id))
       toast.success("Contact Deleted Successfully")
-
     } catch (error) {
       console.log(error)
     }
