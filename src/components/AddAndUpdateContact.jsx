@@ -3,7 +3,7 @@ import Modal from './Modal'
 import { Form,Formik,Field, ErrorMessage } from 'formik'
 import { addDoc, collection,updateDoc,doc } from 'firebase/firestore'
 import {db} from '../config/firebase'
-import { ToastContainer, toast } from 'react-toastify'
+import {  toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 
@@ -38,8 +38,7 @@ onClose();
     }
   return (
     <div>
-        <Modal isOpen={isOpen}
-onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose}>
      <Formik
     validationSchema={contactSchemaValidation}
     initialValues={isUpdate?{
@@ -60,7 +59,7 @@ onClose={onClose}>
     }}
     
     >
-        <Form className='flex flex-col justify-center items-center gap-1 '>
+        <Form className='flex flex-col justify-center items-center gap-1  '>
             <div className='flex flex-col  w-2/3'>
             <label htmlFor='name'>Name</label>
             <Field name="name" className="border border-black  py-2" />
@@ -78,11 +77,7 @@ onClose={onClose}>
             <Field name="number" className="border border-black py-2" />
 
             </div>
-            <div className='flex flex-col w-2/3'>
-            <label htmlFor='image'>Image Upload</label>
-            <Field name="image" className="border border-black py-2" />
 
-            </div>
             <button className='bg-orange p-4 text-white' type='submit'> {isUpdate? " Update ": "Add"} Contact</button>
         </Form>
     </Formik>

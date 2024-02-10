@@ -75,14 +75,17 @@ const filterContacts=(e)=>{
         
         Create New Contact</p>
     </div>
-    <div>{
+    <div className='bg-white'>{
 contacts.length<=0?<NotFoundContact/>:contacts.map((contact)=>(
     <ContactCard key={contact.id} contact={contact} />
 )
 )
 }</div>
     </div>
-<AddAndUpdateContact isOpen={isOpen} onClose={onClose}  />
+    <div >
+    <AddAndUpdateContact isOpen={isOpen} onClose={onClose}  />
+
+    </div>
 <ToastContainer/>
         </>
   )

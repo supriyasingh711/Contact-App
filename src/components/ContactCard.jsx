@@ -1,5 +1,5 @@
 import React from 'react'
-import img from '../images/4.jpeg'
+import img from '../images/moon.jpeg'
 import { deleteDoc, doc } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import AddAndUpdateContact from './AddAndUpdateContact'
@@ -18,22 +18,27 @@ const deleteContact = async (id) => {
   }
   return (
     <>
-      <div key={contact.id} className='rounded bg-gradient-to-r from-violet-500 to-pink-500 w-full m-2 border-white text-white   '>
-        <div className='m-2 flex justify-between items-center  '>
-        <img src={img} alt="" className='h-16 w-16 rounded-full object-cover m-2' />
-<div>
-<h2 className='text-3xl text-white'>{contact.name}</h2>
-          <p className='text-white'><i className='fas fa-envelope'></i> {contact.email}</p>
-          <p className='text-white'><i className='fas fa-phone'></i> {contact.number}</p>
+   
+    <div key={contact.id} className='rounded  w-full p-2 p-4 border-white text-white   '>
+        <div className='bg-black flex  justify-between items-center  '>
+        <img src={img} alt="" className='h-16 w-16 rounded-full object-cover ' />
+    <div className='w-'>
+    <h2 className='text-2xl text-slate-300 capitalize tracking-tighter leading-10 text-white'>{contact.name}</h2>
+          <p className='text-white'>{contact.email}</p>
+          <p className='text-white'>{contact.number}</p>
 
-</div> </div>
-        <div className='flex bg-white text-black cursor-pointer text-xl font-bold justify-around w-full items-center'>
+    </div> 
+    <div className='flex w-1/3 cursor-pointer text-xl font-bold justify-around w-full items-center'>
 
-<button href="" className='' onClick={onOpen} >Edit </button><br></br>
-<button href="" onClick={() => deleteContact(contact.id)}>Delete</button>
+        <button href="" className='' onClick={onOpen} ><i className='fa fa-pen'></i> </button><br></br>
+        <button href="" onClick={() => deleteContact(contact.id)}><i className='fa fa-trash'></i></button>
 
 </div>
+    </div>
+        
       </div>
+ 
+      
       <AddAndUpdateContact
 
         contact={contact}
