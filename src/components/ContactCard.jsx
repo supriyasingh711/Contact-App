@@ -19,7 +19,7 @@ const deleteContact = async (id) => {
   return (
     <>
    
-    <div key={contact.id} className='rounded  w-full p-2 p-4 border-white text-white   '>
+    <div key={contact.id} className='rounded  w-full p-4 border-white text-white   '>
         <div className='bg-black flex  justify-between items-center  '>
         <img src={img} alt="" className='h-16 w-16 rounded-full object-cover ' />
     <div className='w-'>
